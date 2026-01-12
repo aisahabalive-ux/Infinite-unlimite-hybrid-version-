@@ -1,0 +1,27 @@
+name: Permanent Monitoring – 2nm Evolution Cycle
+
+on:
+  schedule:
+    - cron: '0 */4 * * *' # हर 4 घंटे में अपने आप चलेगा
+  workflow_dispatch: # GitHub Actions टैब से खुद चलाने का विकल्प
+
+jobs:
+  evolution-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Supreme Repository
+        uses: actions/checkout@v3
+
+      - name: Execute Autonomous Monitor
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: |
+          node scripts/monitor.js
+          
+      - name: Commit & Push Evolution Results
+        run: |
+          git config --global user.name "Nexus-Autonomous-Core"
+          git config --global user.email "core@silicon-nexus.ai"
+          git add .
+          git commit -m "EVOLUTION_PULSE: System baseline updated [skip ci]" || echo "No changes detected"
+          git push
