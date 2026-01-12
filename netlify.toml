@@ -1,0 +1,11 @@
+[build]
+  publish = "."
+  command = "npm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[template.environment]
+  API_KEY = "Your Gemini API Key"
