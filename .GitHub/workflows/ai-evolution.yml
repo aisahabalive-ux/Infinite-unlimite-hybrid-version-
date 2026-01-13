@@ -1,30 +1,27 @@
 name: AI-Nexus Permanent Evolution
 on:
   schedule:
-    - cron: '0 */4 * * *' # यह हर 4 घंटे में खुद चलेगा
-  workflow_dispatch: # इसे आप हाथ से भी चला सकते हैं
-
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
 jobs:
   auto-evolve:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-
-      - name: Autonomous Evolution Pulse
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Evolution Pulse
         env:
           API_KEY: ${{ secrets.API_KEY }}
+        run: node scripts/evolution.js
+      - name: Auto-Commit
         run: |
-          echo "AI-Nexus Engine: Checking system entropy..."
-          mkdir -p logs
-          echo "Evolution Pulse: $(date)" >> logs/evolution.log
-          
-      - name: Auto-Commit Improvements
-        run: |
-          git config --global user.name "Nexus-Autonomous-Core"
-          git config --global user.email "core@silicon-nexus.ai"
+          git config --global user.name "Nexus-Core"
+          git config --global user.email "core@silicon.ai"
           git add .
-          git commit -m "AUTONOMOUS_UPGRADE: System evolved to next logic state [skip ci]" || echo "No changes"
+          git commit -m "SUPREME_AUTO_UPGRADE [skip ci]" || echo "No changes"
           git push
