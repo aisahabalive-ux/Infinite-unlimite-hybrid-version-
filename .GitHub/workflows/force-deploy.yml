@@ -1,0 +1,21 @@
+name: FORCE_SUPREME_DEPLOY
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Force Build Trigger
+        run: |
+          echo "SUPREME_DEPLOY_INITIATED"
+          date > deploy_ping.txt
+      - name: Auto-Commit Pulse
+        run: |
+          git config --global user.name "Nexus-Deployer"
+          git config --global user.email "deploy@silicon.ai"
+          git add deploy_ping.txt
+          git commit -m "FORCE_ACTIVATE_NETLIFY [skip ci]" || echo "Steady"
+          git push
