@@ -1,11 +1,22 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "devCommand": "npm run dev",
   "framework": "vite",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "env": {
+    "NODE_VERSION": "18"
+  }
 }
 ```
 
-**2. `.npmrc`:**
+---
+
+### **2. `.npmrc` - ROOT FOLDER MEIN**
+
+**File name:** `.npmrc`
+
+**Code:**
 ```
 legacy-peer-deps=true
+engine-strict=false
