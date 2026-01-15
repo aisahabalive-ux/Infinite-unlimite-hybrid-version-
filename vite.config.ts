@@ -12,16 +12,29 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    chunkSizeWarningLimit: 1000,
+    minify: 'terser',
+    chunkSizeWarningLimit: 1600,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            return 'vendor'
+          }
         }
+      },
+      onwarn(warning, warn) {
+        if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+          return
+        }
+        warn(warning)
       }
     }
   },
   server: {
-    port: 3000
+    port: 3000,
+    strictPort: false
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom']
   }
 })
