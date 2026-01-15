@@ -1,22 +1,20 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "devCommand": "npm run dev",
   "framework": "vite",
-  "installCommand": "npm install",
-  "env": {
-    "NODE_VERSION": "18"
-  }
+  "installCommand": "npm install"
 }
 ```
 
+6. Neeche **"Commit new file"** par click karo
+
 ---
 
-### **2. `.npmrc` - ROOT FOLDER MEIN**
+### **File 2: `.npmrc` (Naya file banao)**
 
-**File name:** `.npmrc`
-
-**Code:**
+**Kaise banayein:**
+1. Phir se **"Add file"** → **"Create new file"**
+2. Name box mein type karo: **`.npmrc`** (dot se shuru hona zaroori hai)
+3. Yeh code paste karo:
 ```
 legacy-peer-deps=true
-engine-strict=false
