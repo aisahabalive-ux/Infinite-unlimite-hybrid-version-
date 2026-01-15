@@ -1,20 +1,5 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "vite",
-  "installCommand": "npm install"
+  "framework": "vite"
 }
-```
-
-6. Neeche **"Commit new file"** par click karo
-
----
-
-### **File 2: `.npmrc` (Naya file banao)**
-
-**Kaise banayein:**
-1. Phir se **"Add file"** → **"Create new file"**
-2. Name box mein type karo: **`.npmrc`** (dot se shuru hona zaroori hai)
-3. Yeh code paste karo:
-```
-legacy-peer-deps=true
